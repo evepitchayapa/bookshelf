@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Book Finder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        body{background-color: #E4DDD4;}
+        nav{background-color: #A1A884;}
+        label{font-weight: bold;}
+        .bg-p{background-color: #C54F1F; color: white !important;}
+        .tm-section-3 {padding-top: 500px; padding-bottom: 20px; position: relative;}
+        .nav-tabs{border-bottom:1px solid #EFCD76; border-width: 2px; color: #EFCD76}
+        .nav-tabs .nav-item{margin-bottom:-1px}
+        .nav-tabs .nav-link{border:2px solid transparent;border-top-left-radius:.25rem;border-top-right-radius:.25rem}
+        .nav-tabs .nav-link:focus,.nav-tabs .nav-link:hover{border-color:#EFCD76 #EFCD76 #EFCD76}
+        .nav-tabs .nav-link.disabled{color:#6c757d;background-color:transparent;border-color:transparent}
+        .nav-tabs .nav-item.show .nav-link,.nav-tabs .nav-link.active{color:rgb(49, 49, 49);background-color:#EFCD76;border-color:#EFCD76}
+        .nav-tabs .dropdown-menu{margin-top:-1px;border-top-left-radius:0;border-top-right-radius:0}
+        .nav-link{color: #EFCD76;}
+        .nav-link:focus,.nav-tabs .nav-link:hover{border-color:#EFCD76; color: #EFCD76;}
+        .btn-own{color:rgb(49, 49, 49);background-color:#EFCD76;border-color:#EFCD76;font-weight: bold;}
+        .btn-own:hover{color:rgb(49, 49, 49);background-color:rgb(214, 180, 93);border-color:rgb(214, 180, 93)}
+        .btn-own.focus,.btn-own:focus{color:rgb(49, 49, 49);background-color:#EFCD76;border-color:#EFCD76;box-shadow:0 0 0 .2rem rgb(214, 180, 93)}
+        .dropdown-menu{position:absolute;top:100%;left:0;z-index:1000;display:none;float:left;min-width:10rem;padding:.5rem 0;margin:.125rem 0 0;font-size:1rem;color:#212529;text-align:left;list-style:none;background-color:#EFCD76!important;background-clip:padding-box;border:1px solid rgba(0,0,0,.15);border-radius:.25rem}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-color">
+        <a class="navbar-brand" href="/search" style="font-weight: bold; font-size: 25px;">Find UR Book</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav nav-tabs">
+                {% if user.is_authenticated %}
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/search"> Database <span class="sr-only">(current)</span></a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/querybyuser"> Search <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/admin/"> admin <span class="sr-only">(current)</span></a>
+                </li> -->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">User: {{user.username}}</a>
+                    <div class="dropdown-menu">
+                      <a class="nav-link" href="/logout">Log Out</a>
+
+                    </div>
+                  </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login">Log In</a>
+                </li>
+                <!-- <li class="nav-item active">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li> -->
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+
+</body>
+
+</html>

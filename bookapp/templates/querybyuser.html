@@ -1,0 +1,99 @@
+{% extends 'layout.html' %} {% block content %}
+{% if user.is_authenticated %}
+
+<form action="/querybyuser/" method="POST">
+    {% csrf_token %}
+    <br>
+
+        <label style="font-size: 20px;">Book</label>
+        <br>
+        <input id='searchbook' name='searchbook' type="text" style="font-size: 16px;">
+    <!-- <p> <label style="font-size: 20px;">Author:</label>
+    <input id='searchauthor' name='searchauthor' type="text"  style="background-color: yellowgreen; font-size: 20px;"></p>
+    <p> <label style="font-size: 20px;">Publisher:</label>
+    <input id='searchpublisher' name='searchpublisher' type="text"  style="background-color: blue; font-size: 20px;"></p> -->
+    <br>
+    <br>
+    <div class="input-group-prepend">
+    <!-- <form action="/querybyuser/" method="POST">
+        {% csrf_token %} -->
+        <select class="form-control-search" id="flide-1" name="flide-1" style="font-size: 16px; font-weight: bold;"> 
+        <option value="author">author</option>
+        <option value="publisher">publisher</option>
+        </select>
+        <!-- <br> -->
+        <input id='searchboth' name='searchboth' type="text">
+    <!-- </form> -->
+    </div>
+    <br>
+    <!-- <input class="btn btn-outline-own" type="submit" value="GO! GO!!" style="background-color: #EFCD76;"> -->
+    <input type="submit" value="Go" class="btn btn-own">
+
+</form>
+<br>{% if at == 'author'%}
+Time : {{time}}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>IBSN</th>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Publisher</th>            
+        </tr>
+        {% for i in setbook %}
+            {% for b in i %}
+            <tr>
+                <td>{{b.b_id}}</td>
+                <td>{{b.b_name}}</td>
+                <td>{{b.authors}}</td>
+                <td>{{b.publisher}}</td>
+            </tr>
+        {% endfor %}
+        {% endfor %}
+</table>
+    {% elif at == 'book' %}
+    Time : {{time}}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>IBSN</th>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Publisher</th>            
+            </tr>
+            {% for i in setbook %}
+                <tr>
+                    <td>{{i.b_id}}</td>
+                    <td>{{i.b_name}}</td>
+                    <td>{{i.authors}}</td>
+                    <td>{{i.publisher}}</td>
+                </tr>
+            {% endfor %}
+    </table>
+    <br>{% elif at == 'publisher'%}
+    Time : {{time}}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>IBSN</th>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Publisher</th>            
+        </tr>
+        {% for i in setbook %}
+            {% for b in i %}
+            <tr>
+                <td>{{b.b_id}}</td>
+                <td>{{b.b_name}}</td>
+                <td>{{b.authors}}</td>
+                <td>{{b.publisher}}</td>
+            </tr>
+        {% endfor %}
+        {% endfor %}
+</table>
+{% endif %}
+{% else %}
+   please <a href="/accounts/login">login </a>
+    before access
+{% endif %}
+{% endblock %}

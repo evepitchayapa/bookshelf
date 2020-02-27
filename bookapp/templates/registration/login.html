@@ -1,0 +1,20 @@
+{% extends 'layout.html' %} {% block content %}
+<p></p>
+<p style="font-size:  25px; font-weight: bold;">Log In</p>
+    {% if form.errors %}
+    <p class="bg-p"> There's something wrong with what you enteres! </p>
+    {% endif %}
+    {% if next %}
+    <p class="bg-p">Hey, you can't access that page.</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+       <p>{{ form.username}}</p> 
+        <p>{{ form.password}}</p> 
+   
+    <input type="submit" value="Login" class="btn btn-own">
+    <input type="hidden" name="next" value="{{ next }}">
+    <a class="btn btn-own" href="/accounts/signup" role="button">Sign up</a>
+</form>
+{% endblock %}

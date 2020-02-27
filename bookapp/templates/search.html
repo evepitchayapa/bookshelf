@@ -1,0 +1,82 @@
+{% extends 'layout.html' %} {% block content %}
+{% if user.is_authenticated %}
+<form action="/search/" method="POST">
+    {% csrf_token %}
+    <br>
+    <select class="form-control form-control-lg" id="flide" name="flide"> 
+    <option value="book">book</option>
+    <option value="author">author</option>
+    <option value="publisher">publisher</option>
+  </select>
+    <br>
+    <select class="form-control" id="num1" name="num1">
+        <option value=10 >10</option>
+        <option value=100>100</option>
+        <option value="all">All</option>
+      </select>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-own">
+</form>
+
+
+<br>{% if flide == 'book' %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>IBSN</th>
+            <th>name</th>
+            <th>page</th>
+            <th>year</th>
+        </tr>
+        {% for i in result %}
+        <tr>
+            <td>{{i.b_id}}</td>
+            <td>{{i.b_name}}</td>
+            <td>{{i.b_page}}</td>
+            <td>{{i.b_year}}</td>
+        </tr>
+        {% endfor %}
+</table>
+{% elif flide == 'author' %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>No.</th>
+            <th>name</th>
+            <th>date</th>
+        </tr>
+        {% for i in result %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.a_name}}</td>
+            <td>{{i.a_year}}</td>
+        </tr>
+        {% endfor %}
+</table>
+{% elif flide == 'publisher' %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>No.</th>
+            <th>name</th>
+        </tr>
+        {% for i in result %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.p_name}}</td>
+        </tr>
+        {% endfor %}
+</table>
+{% endif %}
+<br>
+{% else %}
+<div class=".tm-section-3">
+    <div class="container">
+    <div class="text-center">
+        <br>
+   <p> Please <a href="/accounts/login" class="btn btn-warning"> login </a> before access </p>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock %}
