@@ -25,7 +25,7 @@ SECRET_KEY = 'ip*^2%ob%w0=(g6rr88zhpm4$1@kgu!nd!%z!80^k$u1-rqrtb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bookappg4.herokuapp.com',' 127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
