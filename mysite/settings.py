@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'databook4',
+        'NAME': 'databookapp',
         'USER': 'kibyangwai@bookappg4',
         'PASSWORD': 'chalol22^^',
         'HOST': 'bookappg4.postgres.database.azure.com',
