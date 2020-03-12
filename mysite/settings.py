@@ -84,6 +84,7 @@ DATABASES = {
         'USER': 'overevereve',
         'PASSWORD': '08061999',
         'HOST': 'databookgroup4.c6zxyawgwc2v.us-east-2.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
